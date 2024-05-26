@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Django Framwork</title>
 </head>
 <body>
-        <h2>HomePage</h2>
-        <p>Khemmachat Trakunlertrat</p>
+    <h2>ชื่อบทบทความ : {{ name }}</h2>
+    <h2>ผู้แต่ง : {{ author }}</h2>
+
+    <h2>ป้ายกำกับ</h2>
+    <ul>
+        {% for tag in tags %}
+        <li>{{tag}}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
