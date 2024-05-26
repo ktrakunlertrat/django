@@ -20,5 +20,6 @@ from testdb import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',views.hello)
+    path('',views.hello),
+    path('page1',views.page1)
 ]
