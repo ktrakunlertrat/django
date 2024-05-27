@@ -2,18 +2,34 @@
 
 {% block content %}
 
-<h2 align="center">เขียนบทความ</h2>
+<h2 align="center">สร้างโปรไฟล์ของคุณ</h2>
 <form action="addform" method="post">
     {% csrf_token %}
     <div class="form-group">
-        <label for="">ชื่อบทความ</label>
-        <input type="text" class="form-control" name="name">
+        <label for="">Username</label>
+        <input type="text" class="form-control" name="username">
     </div>
     <div class="form-group">
-        <label for="">รายละเอียดบทความ</label>
-        <input type="text" class="form-control" name="description">
+        <label for="">FirstName</label>
+        <input type="text" class="form-control" name="firstname">
     </div>
-    <input type="submit" value="บันทึกบทความ" class="btn btn-primary">
+    <div class="form-group">
+        <label for="">LastName</label>
+        <input type="text" class="form-control" name="lastname">
+    </div>
+    <div class="form-group">
+        <label for="">Email</label>
+        <input type="email" class="form-control" name="email">
+    </div>
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <div class="form-group">
+        <label for="">Re-Password</label>
+        <input type="password" class="form-control" name="repassword">
+    </div>
+    <input type="submit" value="ลงทะเบียน" class="btn btn-primary">
 
 </form>
 
