@@ -21,5 +21,7 @@ from testdb import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',views.hello),
-    path('page1',views.page1)
+    path('page1',views.page1),
+    path('createForm',views.createForm),
+    path('addform',views.addBlog)
 ]
