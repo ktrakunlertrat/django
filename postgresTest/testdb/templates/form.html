@@ -3,6 +3,15 @@
 {% block content %}
 
 <h2 align="center">สร้างโปรไฟล์ของคุณ</h2>
+
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+        <b>{{message}}</b>
+    {% endfor %}
+</div>
+{% endif %}
+
 <form action="addform" method="post">
     {% csrf_token %}
     <div class="form-group">

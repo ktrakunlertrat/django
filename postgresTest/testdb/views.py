@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Post
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,auth
+from django.contrib import messages
 
 # Create your views here.
 def hello(request):
@@ -14,6 +15,9 @@ def page1(request):
 def createForm(request):
     return render(request,'form.html')
 
+def loginForm(request):
+    return render(request,'login.html')
+
 def addUser(request):
     username=request.POST['username']
     firstname=request.POST['firstname']
@@ -24,10 +28,10 @@ def addUser(request):
 
     if password==repassword :
         if User.objects.filter(username=username).exists():
-            print("UserName นี้มีคนใช้แล้ว")
+            messages.info(request,'UserName นี้มีคนใช้แล้ว')
             return redirect('/createForm')
         elif User.objects.filter(email=email).exists():
-            print("Email นี้เคยลงทะเบียนแล้ว")
+            messages.info(request,'Email นี้เคยลงทะเบียนแล้ว')
             return redirect('/createForm')
         else :
             user=User.objects.create_user(
@@ -40,4 +44,25 @@ def addUser(request):
         user.save()
         return redirect('/')
     else :
+        messages.info(request,'รหัสผ่านไม่ตรงกัน')
         return redirect('/createForm')
+    
+def login(request):
+    username=request.POST['username']
+    password=request.POST['password']
+
+
+    #check username ,password
+    #login
+    user=auth.authenticate(username=username,password=password)
+
+    if user is not None :
+        auth.login(request,user)
+        return redirect('/')
+    else :
+        messages.info(request,'ไม่พบข้อมูล')
+        return redirect('/loginForm')
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
